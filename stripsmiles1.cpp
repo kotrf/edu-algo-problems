@@ -68,11 +68,12 @@ int main()
 
     cout << "Run time measurements\n";
 
-    // string longStr(1000, 'a');      // 6 us
-    // string longStr(10000, 'a');     // 64 us
-    // string longStr(100000, 'a');    // 496 us
-    // string longStr(1000000, 'a');   // 4548 us
-    string longStr(10000000, 'a');  // 45812 us
+    // string longStr(1000, 'a');      // 5 us
+    // string longStr(10000, 'a');     // 52 us
+    // string longStr(100000, 'a');    // 431 us
+    // string longStr(1000000, 'a');   // 3688 us
+    // string longStr(10000000, 'a');  // 37305 us
+    string longStr(100000000, 'a'); // 367302 us
 
     for (int n=0; n<smile0.size(); ++n)
         longStr[smile0Pos+n] = smile0[n];
@@ -85,8 +86,9 @@ int main()
 
     for ( int runCnt=0; runCnt < Runs; ++runCnt)
     {
+        string s(longStr);
         auto start = high_resolution_clock::now();
-        stripSmiles(longStr);
+        stripSmiles(s);
         auto stop = high_resolution_clock::now();
         auto duration = duration_cast<microseconds>(stop - start);
         runTimeMs += duration.count();
